@@ -16,7 +16,7 @@ export default class App extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <div className="content">
+        <div className="container-fluid">
           <Events events={this.state.events} />
         </div>
         <Menu />

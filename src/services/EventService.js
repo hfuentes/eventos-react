@@ -4,40 +4,60 @@ export default class EventService {
             {
                 title: "Cumpleaños de Geraldine",
                 name: "Geraldine",
-                type: "Cumpleaños",
+                type: "birthday",
                 birthday: new Date(1988, 6, 27),
-                diffDays: this.calculateDaysLeftForBirthday(new Date(1988, 6, 27))
+                gender: "female"
             },
             {
                 title: "Cumpleaños de Máximo",
                 name: "Máximo",
-                type: "Cumpleaños",
+                type: "birthday",
                 birthday: new Date(2008, 11, 1),
-                diffDays: this.calculateDaysLeftForBirthday(new Date(2008, 11, 1))
+                gender: "male"
             },
             {
                 title: "Cumpleaños de Héctor",
                 name: "Héctor",
-                type: "Cumpleaños",
+                type: "birthday",
                 birthday: new Date(1988, 2, 6),
-                diffDays: this.calculateDaysLeftForBirthday(new Date(1988, 2, 6))
+                gender: "male"
+            },
+            {
+                title: "Cumpleaños de Juanito",
+                name: "Juanito",
+                type: "birthday",
+                birthday: new Date(1959, 2, 6),
+                gender: "male"
             }
         ];
-        let payments = [];
+        let payments = [
+            {
+                title: "Crédito de Consumo"
+            }
+        ];
         return {
-            birthdays: birthdays,
+            birthdays: birthdays.map(b => {
+                b.daysLeftForBirthday = this.calculateDaysLeftForBirthday(b.birthday);
+                b.age = this.calculateAge(b.birthday);
+                return b;
+            }),
             payments: payments
         };
     }
 
     calculateDaysLeftForBirthday(birthday) {
-        const today = new Date();
-        const bday = new Date(today.getFullYear(), birthday.getMonth(), birthday.getDate());
-        console.log(bday);
+        let today = new Date();
+        let bday = new Date(today.getFullYear(), birthday.getMonth(), birthday.getDate());
         if (today.getTime() > bday.getTime()) {
             bday.setFullYear(bday.getFullYear() + 1);
         }
-        const diff = bday.getTime() - today.getTime();
+        let diff = bday.getTime() - today.getTime();
         return Math.floor(diff / (1000 * 60 * 60 * 24));
+    }
+
+    calculateAge(birthday) {
+        let today = new Date();
+        let ageBase = today.getFullYear() - birthday.getFullYear();
+        return (birthday.getMonth() < today.getMonth() && birthday.getDate() < today.getDate()) ? ageBase - 1 : ageBase;
     }
 }
