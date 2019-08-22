@@ -2,6 +2,7 @@ import React from 'react';
 import Birthday from './Birthday';
 import Payment from './Payment';
 import SpecialDate from './SpecialDate';
+import WorkStuff from './WorkStuff';
 
 export default class Events extends React.Component {
     constructor(props) {
@@ -32,17 +33,31 @@ export default class Events extends React.Component {
     }
     render() {
         return (
-            <div class="row">
-                <div class="col-sm">
-                    {this.renderBirthdays()}
+            <React.Fragment>
+                <div class="row">
+                    <div class="col-sm">
+                        <WorkStuff workStuff={this.props.events.workStuff} />
+                    </div>
                 </div>
-                <div class="col-sm">
-                    {this.renderPayments()}
+                <div class="row">
+                    <div class="col-sm">
+                        {this.renderBirthdays()}
+                    </div>
                 </div>
-                <div class="col-sm">
-                    {this.renderSpecialDates()}
-                </div>
-            </div>
+            </React.Fragment>
         );
     }
+    /*
+    <div class="row">
+                    <div class="col-sm">
+                        {this.renderBirthdays()}
+                    </div>
+                    <div class="col-sm">
+                        {this.renderPayments()}
+                    </div>
+                    <div class="col-sm">
+                        {this.renderSpecialDates()}
+                    </div>
+                </div>
+     */
 }

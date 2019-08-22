@@ -8,9 +8,8 @@ import Menu from './components/Menu';
 export default class App extends React.Component {
   constructor(props) {
     super(props);
-    this.eventService = new EventService();
     this.state = {
-      events: this.eventService.getEvents()
+      events: EventService.getEvents()
     };
   }
   render() {

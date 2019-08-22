@@ -1,7 +1,7 @@
-export default class EventService {
+class EventService {
     getEvents() {
         let birthdays = [
-            {
+            /*{
                 title: "Cumpleaños de Geraldine",
                 name: "Geraldine",
                 type: "birthday",
@@ -27,6 +27,13 @@ export default class EventService {
                 name: "Juanito",
                 type: "birthday",
                 birthday: new Date(1959, 2, 6),
+                gender: "male"
+            }*/
+            {
+                title: "Cumpleaños de Héctor",
+                name: "Héctor",
+                type: "birthday",
+                birthday: new Date(1988, 2, 6),
                 gender: "male"
             }
         ];
@@ -89,7 +96,13 @@ export default class EventService {
                     default: e.repetitionText = undefined;
                 }
                 return e;
-            })
+            }),
+            workStuff: {
+                config: {
+                    in: 9,
+                    out: 18
+                }
+            }
         };
     }
 
@@ -119,6 +132,8 @@ export default class EventService {
     calculateAge(birthday) {
         let today = new Date();
         let ageBase = today.getFullYear() - birthday.getFullYear();
-        return (birthday.getMonth() < today.getMonth() && birthday.getDate() < today.getDate()) ? ageBase - 1 : ageBase;
+        return (birthday.getMonth() < today.getMonth() && birthday.getDate() < today.getDate()) ? ageBase : ageBase + 1;
     }
 }
+
+export default new EventService();
