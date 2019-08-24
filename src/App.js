@@ -1,9 +1,7 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
-
 import Events from './components/Events';
 import EventService from './services/EventService';
-import Menu from './components/Menu';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -14,12 +12,7 @@ export default class App extends React.Component {
   }
   render() {
     return (
-      <React.Fragment>
-        <div className="container-fluid">
-          <Events events={this.state.events} />
-        </div>
-        <Menu />
-      </React.Fragment>
+      <Events events={this.state.events} />
     );
   }
 }
